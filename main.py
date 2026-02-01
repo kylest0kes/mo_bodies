@@ -10,6 +10,8 @@ if __name__ == "__main__":
     clock = pygame.time.Clock()
     running = True
     
+    body1 = Body(400, 300, 0, 0, 1.0)        
+
     while running:
         for e in pygame.event.get():
             if e.type == pygame.QUIT:
@@ -20,7 +22,6 @@ if __name__ == "__main__":
             
         screen.fill("black")
 
-        body1 = Body(400, 300, 0, 0, 1.0)        
         body1.draw(screen)
 
         pygame.display.flip()
