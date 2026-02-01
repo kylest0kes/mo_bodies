@@ -2,7 +2,7 @@ import os
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 
 import pygame
-
+from physics import Body
 
 if __name__ == "__main__":
     pygame.init()
@@ -19,6 +19,9 @@ if __name__ == "__main__":
                     running = False
             
         screen.fill("black")
+
+        body1 = Body(400, 300, 0, 0, 1.0)        
+        body1.draw(screen)
 
         pygame.display.flip()
         

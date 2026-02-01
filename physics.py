@@ -8,5 +8,5 @@ class Body:
         self.mass = mass
         pass
 
-    def draw(self, screen, radius=13):
-        pygame.draw(screen, "white", self.pos, radius)
+    def draw(self, screen, radius=10):
+        pygame.draw.circle(screen, "white", (int(self.pos[0]), int(self.pos[1])), radius)
