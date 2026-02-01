@@ -10,7 +10,8 @@ if __name__ == "__main__":
     clock = pygame.time.Clock()
     running = True
     
-    body1 = Body(400, 300, 0, 0, 1.0)        
+    center = Body(400, 300, 0, 0, 1.0)        
+    body1 = Body.generate_starting_pos(800, 600)
 
     while running:
         for e in pygame.event.get():
@@ -22,6 +23,7 @@ if __name__ == "__main__":
             
         screen.fill("black")
 
+        center.draw(screen)
         body1.draw(screen)
 
         pygame.display.flip()
