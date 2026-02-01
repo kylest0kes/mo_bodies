@@ -11,7 +11,7 @@ class Body:
         pygame.draw.circle(screen, "white", (int(self.pos[0]), int(self.pos[1])), radius)
 
     @classmethod
-    def generate_starting_pos(cls, w, h):
-        x = np.random.uniform(20, 790)
-        y = np.random.uniform(20, 590)
+    def generate_starting_pos(cls, width, height):
+        x = np.random.uniform(20, width-20)
+        y = np.random.uniform(20, height-20)
         return cls(x, y, 0, 0, 1.0)
