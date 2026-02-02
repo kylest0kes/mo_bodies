@@ -7,11 +7,16 @@ class Body:
         self.vel = np.array([vx, vy], dtype=float) 
         self.mass = mass
 
-    def draw(self, screen, radius=10):
+    def draw(self, screen, radius=5):
         pygame.draw.circle(screen, "white", (int(self.pos[0]), int(self.pos[1])), radius)
+
+    def update(self, dt):
+        self.pos += self.vel * dt
 
     @classmethod
     def generate_starting_pos(cls, width, height):
         x = np.random.uniform(20, width-20)
         y = np.random.uniform(20, height-20)
-        return cls(x, y, 0, 0, 1.0)
+        vx = np.random.uniform(-50, 50)
+        vy = np.random.uniform(-50, 50)
+        return cls(x, y, vx, vy, 1.0)

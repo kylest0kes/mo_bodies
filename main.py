@@ -7,11 +7,17 @@ from physics import Body
 if __name__ == "__main__":
     pygame.init()
     screen = pygame.display.set_mode((800, 600))
+    pygame.display.set_caption("mo bodies")
     clock = pygame.time.Clock()
     running = True
     
     center = Body(400, 300, 0, 0, 1.0)        
-    body1 = Body.generate_starting_pos(800, 600)
+
+    bodies = []
+
+    for i in range(0, 3):
+        body = Body.generate_starting_pos(800, 600)
+        bodies.append(body)
 
     while running:
         for e in pygame.event.get():
@@ -24,10 +30,13 @@ if __name__ == "__main__":
         screen.fill("black")
 
         center.draw(screen)
-        body1.draw(screen)
+        for body in bodies: 
+            body.draw(screen)
 
         pygame.display.flip()
         
-        clock.tick(60)
+        dt = clock.tick(60) / 1000.0
+        for body in bodies:
+            body.update(dt)
         
     pygame.quit()
