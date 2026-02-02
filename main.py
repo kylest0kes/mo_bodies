@@ -27,16 +27,15 @@ if __name__ == "__main__":
                 if e.key == pygame.K_ESCAPE:
                     running = False
             
-        screen.fill("black")
+        dt = clock.tick(60) / 1000.0
+        for body in bodies:
+            body.update(dt)
 
         center.draw(screen)
         for body in bodies: 
             body.draw(screen)
-
+        
+        screen.fill("black")
         pygame.display.flip()
-        
-        dt = clock.tick(60) / 1000.0
-        for body in bodies:
-            body.update(dt)
-        
+
     pygame.quit()
