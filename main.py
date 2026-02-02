@@ -2,6 +2,7 @@ import os
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 
 import pygame
+from sim import Sim
 from physics import Body
 
 if __name__ == "__main__":
@@ -11,13 +12,12 @@ if __name__ == "__main__":
     clock = pygame.time.Clock()
     running = True
     
-    center = Body(400, 300, 0, 0, 1.0)        
+    center = Body(400, 300, 0, 0, 1000.0)        
 
-    bodies = []
-
-    for i in range(0, 3):
+    sim = Sim(center)
+    for i in range(3):
         body = Body.generate_starting_pos(800, 600)
-        bodies.append(body)
+        sim.add_body(body)
 
     while running:
         for e in pygame.event.get():
@@ -28,14 +28,14 @@ if __name__ == "__main__":
                     running = False
             
         dt = clock.tick(60) / 1000.0
-        for body in bodies:
-            body.update(dt)
+        sim.update(dt)
+
+        screen.fill("black")
 
         center.draw(screen)
-        for body in bodies: 
+        for body in sim.bodies: 
             body.draw(screen)
         
-        screen.fill("black")
         pygame.display.flip()
 
     pygame.quit()

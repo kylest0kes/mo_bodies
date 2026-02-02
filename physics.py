@@ -2,7 +2,7 @@ import pygame
 import numpy as np
 
 class Body: 
-    def __init__(self, x, y, vx, vy, mass, acc):
+    def __init__(self, x, y, vx, vy, mass):
         self.pos = np.array([x, y], dtype=float) 
         self.vel = np.array([vx, vy], dtype=float) 
         self.mass = mass
@@ -17,8 +17,15 @@ class Body:
 
     @classmethod
     def generate_starting_pos(cls, width, height):
-        x = np.random.uniform(20, width-20)
-        y = np.random.uniform(20, height-20)
-        vx = np.random.uniform(-50, 50)
-        vy = np.random.uniform(-50, 50)
-        return cls(x, y, vx, vy, 1.0)
+        angle = np.random.uniform(0, 2*np.pi)
+        distance = np.random.uniform(80, 200)
+        
+        x = 400 + distance * np.cos(angle)
+        y = 300 + distance * np.sin(angle)
+        
+        orbital_speed = np.sqrt(200 * 1000 / distance) * 0.8  # 20% randomness
+        vx = -orbital_speed * np.sin(angle)  
+        vy =  orbital_speed * np.cos(angle)
+        
+        mass = np.random.choice([12.3, 5.0, 2.0, 1.0, 0.5])
+        return cls(x, y, vx, vy, mass)
