@@ -23,7 +23,7 @@ class Body:
         x = 400 + distance * np.cos(angle)
         y = 300 + distance * np.sin(angle)
         
-        orbital_speed = np.sqrt(200 * 1000 / distance) * 0.8  # 20% randomness
+        orbital_speed = np.sqrt(200 * 1000 / distance) * 1.5  
         vx = -orbital_speed * np.sin(angle)  
         vy =  orbital_speed * np.cos(angle)
         

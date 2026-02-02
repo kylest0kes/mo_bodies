@@ -27,7 +27,7 @@ if __name__ == "__main__":
                 if e.key == pygame.K_ESCAPE:
                     running = False
             
-        dt = clock.tick(60) / 1000.0
+        dt = clock.tick(60) / 1000.0 * 4.5
         sim.update(dt)
 
         screen.fill("black")
