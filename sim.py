@@ -19,14 +19,14 @@ class Sim:
             
             direction = self.center.pos - body1.pos
             distance = np.linalg.norm(direction)
-            if distance > 1:
+            if distance > 25:
                 body1.acc += self.G * self.center.mass * direction / (distance ** 3)
             
             for j, body2 in enumerate(self.bodies):
                 if i != j:
                     direction = body2.pos - body1.pos
                     distance = np.linalg.norm(direction)
-                    if distance > 1:
+                    if distance > 25:
                         body1.acc += self.G * body2.mass * direction / (distance ** 3)
     
     def update(self, dt):

@@ -12,10 +12,9 @@ if __name__ == "__main__":
     clock = pygame.time.Clock()
     running = True
     
-    center = Body(500, 400, 0, 0, 1000.0)        
+    center = Body(500, 400, 0, 0, 2000.0)        
 
     sim = Sim(center)
-    paused = sim.paused
     for i in range(3):
         body = Body.generate_starting_pos(1000, 800)
         sim.add_body(body)
@@ -28,12 +27,12 @@ if __name__ == "__main__":
                 if e.key == pygame.K_ESCAPE:
                     running = False
                 if e.key == pygame.K_SPACE:
-                    paused = not paused
+                    sim.paused = not sim.paused
                     
     
         dt = clock.tick(60) / 1000.0 * 4.5
 
-        if paused == False:    
+        if sim.paused == False:    
             sim.update(dt)
 
         screen.fill("black")

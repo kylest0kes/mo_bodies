@@ -18,16 +18,16 @@ class Body:
     @classmethod
     def generate_starting_pos(cls, width, height):
         angle = np.random.uniform(0, 2*np.pi)
-        distance = np.random.uniform(80, 200)
+        distance = np.random.uniform(60, 150)
         
         x = 500 + distance * np.cos(angle)
         y = 400 + distance * np.sin(angle)
         
-        orbital_speed = np.sqrt(200 * 1000 / distance) * 1.5  
+        orbital_speed = np.sqrt(350 * 1000 / distance) * 1.3  
         vx = -orbital_speed * np.sin(angle)  
         vy =  orbital_speed * np.cos(angle)
         
-        mass = np.random.choice([12.3, 5.0, 2.0, 1.0, 0.5])
+        mass = np.random.choice([100, 150, 200, 250])
 
         r = np.random.uniform(30, 255)
         g = np.random.uniform(30, 255)
