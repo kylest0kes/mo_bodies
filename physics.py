@@ -2,11 +2,12 @@ import pygame
 import numpy as np
 
 class Body: 
-    def __init__(self, x, y, vx, vy, mass):
+    def __init__(self, x, y, vx, vy, mass, trail_color):
         self.pos = np.array([x, y], dtype=float) 
         self.vel = np.array([vx, vy], dtype=float) 
         self.mass = mass
         self.acc = np.array([0.0, 0.0], dtype=float)
+        self.trail_color = trail_color 
 
     def draw(self, screen, radius=5):
         pygame.draw.circle(screen, "white", (int(self.pos[0]), int(self.pos[1])), radius)
@@ -28,4 +29,9 @@ class Body:
         vy =  orbital_speed * np.cos(angle)
         
         mass = np.random.choice([12.3, 5.0, 2.0, 1.0, 0.5])
-        return cls(x, y, vx, vy, mass)
+
+        r = np.random.uniform(30, 255)
+        g = np.random.uniform(30, 255)
+        b = np.random.uniform(30, 255)
+        trail_color = [r, g, b] 
+        return cls(x, y, vx, vy, mass, trail_color)
