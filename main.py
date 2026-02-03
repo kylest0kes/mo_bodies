@@ -11,6 +11,7 @@ if __name__ == "__main__":
     pygame.display.set_caption("mo bodies")
     clock = pygame.time.Clock()
     running = True
+    paused = False
     
     center = Body(400, 300, 0, 0, 1000.0)        
 
@@ -26,9 +27,14 @@ if __name__ == "__main__":
             if e.type == pygame.KEYDOWN:
                 if e.key == pygame.K_ESCAPE:
                     running = False
-            
+                if e.key == pygame.K_SPACE:
+                    paused = not paused
+                    
+    
         dt = clock.tick(60) / 1000.0 * 4.5
-        sim.update(dt)
+
+        if paused == False:    
+            sim.update(dt)
 
         screen.fill("black")
 
