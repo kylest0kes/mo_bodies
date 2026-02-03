@@ -35,7 +35,7 @@ if __name__ == "__main__":
                 else: 
                     zoom *= 0.9
                 
-                zoom = max(0.3, min(3.0, zoom))
+                zoom = max(0.3, min(9.0, zoom))
                     
     
         dt = clock.tick(60) / 1000.0 * 4.5
