@@ -3,7 +3,7 @@ os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 
 import pygame
 from sim import Sim
-from physics import Body
+from body import Body
 
 if __name__ == "__main__":
     pygame.init()
@@ -11,8 +11,9 @@ if __name__ == "__main__":
     pygame.display.set_caption("mo bodies")
     clock = pygame.time.Clock()
     running = True
+    zoom = 1.0
     
-    center = Body(500, 400, 0, 0, 2000.0)        
+    center = Body(500, 400, 0, 0, 2500.0)        
 
     sim = Sim(center)
     for i in range(3):
@@ -28,6 +29,13 @@ if __name__ == "__main__":
                     running = False
                 if e.key == pygame.K_SPACE:
                     sim.paused = not sim.paused
+            if e.type == pygame.MOUSEWHEEL:
+                if e.y > 0: 
+                    zoom *= 1.1
+                else: 
+                    zoom *= 0.9
+                
+                zoom = max(0.3, min(3.0, zoom))
                     
     
         dt = clock.tick(60) / 1000.0 * 4.5
@@ -36,11 +44,11 @@ if __name__ == "__main__":
             sim.update(dt)
 
         screen.fill("black")
-        sim.draw_trails(screen)
+        sim.draw_trails(screen, zoom)
 
-        center.draw(screen)
+        center.draw(screen, zoom)
         for body in sim.bodies: 
-            body.draw(screen)
+            body.draw(screen, zoom)
         
         pygame.display.flip()
 

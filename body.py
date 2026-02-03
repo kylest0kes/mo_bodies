@@ -8,8 +8,10 @@ class Body:
         self.mass = mass
         self.acc = np.array([0.0, 0.0], dtype=float)
 
-    def draw(self, screen, radius=5):
-        pygame.draw.circle(screen, "white", (int(self.pos[0]), int(self.pos[1])), radius)
+    def draw(self, screen, zoom, radius=5):
+        screen_x = int((self.pos[0] - 500) * zoom + 500)
+        screen_y = int((self.pos[1] - 400) * zoom + 400)
+        pygame.draw.circle(screen, "white", (screen_x, screen_y), radius)
 
     def update(self, dt):
         self.vel += self.acc * dt

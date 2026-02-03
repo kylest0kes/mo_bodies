@@ -39,14 +39,22 @@ class Sim:
                     body.pos[0] += body.vel[0] * dt
                     body.pos[1] += body.vel[1] * dt
 
+                    body.vel *= 0.995
+
                     self.trails[body].append(body.pos.copy())
 
-    def draw_trails(self, screen):
+    def draw_trails(self, screen, zoom):
+        center_x, center_y = 500, 400  # Screen center
         for body in self.bodies:
             trail = self.trails[body]
             if len(trail) > 1:
                 for i in range(len(trail) - 1):
+                    # Transform BOTH trail points
+                    x1 = int((trail[i][0] - center_x) * zoom + center_x)
+                    y1 = int((trail[i][1] - center_y) * zoom + center_y)
+                    x2 = int((trail[i+1][0] - center_x) * zoom + center_x)
+                    y2 = int((trail[i+1][1] - center_y) * zoom + center_y)
+                    
                     pygame.draw.line(screen, body.trail_color, 
-                                     (int(trail[i][0]), int(trail[i][1])), 
-                                     (int(trail[i+1][0]), int(trail[i+1][1])))
+                                (x1, y1), (x2, y2))    
     
