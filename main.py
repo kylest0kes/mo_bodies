@@ -11,11 +11,11 @@ if __name__ == "__main__":
     pygame.display.set_caption("mo bodies")
     clock = pygame.time.Clock()
     running = True
-    paused = False
     
     center = Body(500, 400, 0, 0, 1000.0)        
 
     sim = Sim(center)
+    paused = sim.paused
     for i in range(3):
         body = Body.generate_starting_pos(1000, 800)
         sim.add_body(body)
@@ -37,6 +37,7 @@ if __name__ == "__main__":
             sim.update(dt)
 
         screen.fill("black")
+        sim.draw_trails(screen)
 
         center.draw(screen)
         for body in sim.bodies: 
