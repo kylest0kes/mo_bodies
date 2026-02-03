@@ -7,17 +7,17 @@ from physics import Body
 
 if __name__ == "__main__":
     pygame.init()
-    screen = pygame.display.set_mode((800, 600))
+    screen = pygame.display.set_mode((1000, 800))
     pygame.display.set_caption("mo bodies")
     clock = pygame.time.Clock()
     running = True
     paused = False
     
-    center = Body(400, 300, 0, 0, 1000.0)        
+    center = Body(500, 400, 0, 0, 1000.0)        
 
     sim = Sim(center)
     for i in range(3):
-        body = Body.generate_starting_pos(800, 600)
+        body = Body.generate_starting_pos(1000, 800)
         sim.add_body(body)
 
     while running:
