@@ -4,6 +4,7 @@ os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame
 from sim import Sim
 from body import Body
+from button import Button
 
 if __name__ == "__main__":
     pygame.init()
@@ -38,7 +39,7 @@ if __name__ == "__main__":
                 zoom = max(0.3, min(9.0, zoom))
                     
     
-        dt = clock.tick(60) / 1000.0 * 4.5
+        dt = clock.tick(60) / 1000.0 * 3.5
 
         if sim.paused == False:    
             sim.update(dt)
