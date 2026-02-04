@@ -6,6 +6,9 @@ from sim import Sim
 from body import Body
 from button import Button
 
+def add_mo_bodies():
+    pass
+
 if __name__ == "__main__":
     pygame.init()
     screen = pygame.display.set_mode((1000, 800))
@@ -13,6 +16,10 @@ if __name__ == "__main__":
     clock = pygame.time.Clock()
     running = True
     zoom = 1.0
+
+    buttons = [
+        Button(940, 740, 20, "+", add_mo_bodies, (150, 150, 150), (200, 200, 200), pygame.font.Font(None, 32))
+    ]
     
     center = Body(500, 400, 0, 0, 2500.0)        
 
@@ -50,6 +57,13 @@ if __name__ == "__main__":
         center.draw(screen, zoom)
         for body in sim.bodies: 
             body.draw(screen, zoom)
+
+        for button in buttons:
+            if button.check_hover(pygame.mouse.get_pos()):
+                button.current_color = button.hover_color
+            else:
+                button.current_color = button.color
+            button.draw(screen)
         
         pygame.display.flip()
 

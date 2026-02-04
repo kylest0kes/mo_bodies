@@ -44,12 +44,11 @@ class Sim:
                     self.trails[body].append(body.pos.copy())
 
     def draw_trails(self, screen, zoom):
-        center_x, center_y = 500, 400  # Screen center
+        center_x, center_y = 500, 400  
         for body in self.bodies:
             trail = self.trails[body]
             if len(trail) > 1:
                 for i in range(len(trail) - 1):
-                    # Transform BOTH trail points
                     x1 = int((trail[i][0] - center_x) * zoom + center_x)
                     y1 = int((trail[i][1] - center_y) * zoom + center_y)
                     x2 = int((trail[i+1][0] - center_x) * zoom + center_x)
