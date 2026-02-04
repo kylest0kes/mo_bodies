@@ -6,8 +6,12 @@ from sim import Sim
 from body import Body
 from button import Button
 
-def add_mo_bodies():
-    pass
+def add_mo_bodies(sim, bodies_count):
+    bodies_count[0] += 1
+    sim.clear_bodies()
+    for _ in range(bodies_count[0]):
+        body = Body.generate_starting_pos(1000, 800)
+        sim.add_body(body)
 
 if __name__ == "__main__":
     pygame.init()
@@ -17,16 +21,18 @@ if __name__ == "__main__":
     running = True
     zoom = 1.0
 
-    buttons = [
-        Button(940, 740, 20, "+", add_mo_bodies, (150, 150, 150), (200, 200, 200), pygame.font.Font(None, 32))
-    ]
+    bodies_count = [3] 
     
     center = Body(500, 400, 0, 0, 2500.0)        
 
     sim = Sim(center)
-    for i in range(3):
+    for i in range(bodies_count[0]):
         body = Body.generate_starting_pos(1000, 800)
         sim.add_body(body)
+
+    buttons = [
+        Button(940, 740, 20, "+", lambda: add_mo_bodies(sim, bodies_count), (150, 150, 150), (0, 255, 0), pygame.font.Font(None, 32))
+    ]
 
     while running:
         for e in pygame.event.get():
@@ -42,8 +48,12 @@ if __name__ == "__main__":
                     zoom *= 1.1
                 else: 
                     zoom *= 0.9
-                
                 zoom = max(0.3, min(9.0, zoom))
+            if e.type == pygame.MOUSEBUTTONDOWN:
+                m_x, m_y = pygame.mouse.get_pos()
+                for button in buttons:
+                    if button.check_hover((m_x, m_y)):
+                        button.cb()
                     
     
         dt = clock.tick(60) / 1000.0 * 3.5

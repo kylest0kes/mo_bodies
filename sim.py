@@ -12,6 +12,10 @@ class Sim:
     def add_body(self, body):
         self.bodies.append(body)
         self.trails[body] = []
+    
+    def clear_bodies(self):
+        self.bodies = []
+        self.trails = {}
 
     def calculate_accelerations(self):
         for i, body1 in enumerate(self.bodies):
